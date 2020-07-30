@@ -1,0 +1,39 @@
+#Scoreboard v0.1
+#
+#Local varibales which working without PlaceholderAPI, I want to add more
+#{player-name} return: String (Own player name)!
+#{prefix} return: String (plugin prefix)!
+#
+#Recommended enable it, for lot of cool placeholders!
+PlaceholderAPI:
+  enable: true
+
+BoardSettings:
+  enable-board: true
+  #time in second
+  scoreboard-update: 2
+  #You can use prefix at anywhere with {prefix} variable
+  board-prefix: "&7[&aBasic&2Board&7]"
+
+#You can disable board in a specific world!
+disable-worlds:
+    - 'test'
+    - 'exampleworld'
+
+#Scoreboard header
+scoreboard-displayname: '&a&lBasic&2&lBoard'
+
+#At this time you can't animate lines!
+scoreboard:
+  text:
+    - '&f&m+------------------------+'
+    - ''
+    - '&2» &7Welcome, &a{player-name}'
+    - '&r'
+    - '&2» &7Ping: &a%player_ping%'
+    - '&2» &7Balance: &a%vault_eco_balance%'
+    - '&r&r'
+    - '&2» &a%server_online% &7Online players!'
+    - '&3'
+    - '&f&f&m+------------------------+'
+
