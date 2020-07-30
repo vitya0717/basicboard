@@ -1,8 +1,24 @@
 #Scoreboard v0.1
 #
 #Local varibales which working without PlaceholderAPI, I want to add more
-#{player-name} return: String (Own player name)!
-#{prefix} return: String (plugin prefix)!
+#{player-name}
+#{prefix} - (plugin prefix).
+#{<worldname>_online_players} Online players in specific world'
+#{player_ping}
+#{player_world}
+#{player_exp}
+#{player_hp}
+#{player_food}
+#{player_kills}
+#{player_deaths}
+#{mob_kills}
+#
+#Vault placeholders: Needed vault for work!
+#{player_balance}
+#{player_group}
+#{player_prefix}
+#{player_suffix}
+#
 #
 #Recommended enable it, for lot of cool placeholders!
 PlaceholderAPI:
@@ -17,8 +33,8 @@ BoardSettings:
 
 #You can disable board in a specific world!
 disable-worlds:
-    - 'test'
-    - 'exampleworld'
+  - 'test'
+  - 'exampleworld'
 
 #Scoreboard header
 scoreboard-displayname: '&a&lBasic&2&lBoard'
@@ -30,10 +46,9 @@ scoreboard:
     - ''
     - '&2» &7Welcome, &a{player-name}'
     - '&r'
-    - '&2» &7Ping: &a%player_ping%'
-    - '&2» &7Balance: &a%vault_eco_balance%'
+    - '&2» &7Ping: &a{player_ping}'
+    - '&2» &7World: &a{player_world}'
     - '&r&r'
-    - '&2» &a%server_online% &7Online players!'
-    - '&3'
+    - '&2» &7Online: &a{server_online}&8/&a{server_max_online}'
     - '&f&f&m+------------------------+'
 

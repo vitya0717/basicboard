@@ -40,6 +40,12 @@ public class Main extends JavaPlugin {
             ScoreboardM.updateScoreboard(player);
         }
     }
+
+    @Override
+    public void onDisable() {
+        Bukkit.getScheduler().cancelTasks(this);
+    }
+
     private boolean setupPermissions() {
         RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
         perms = rsp.getProvider();

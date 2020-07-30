@@ -2,13 +2,12 @@ package com.fighter.scoreboard.Scoreboard;
 
 import com.fighter.scoreboard.Main.Main;
 import me.clip.placeholderapi.PlaceholderAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scoreboard.*;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -69,7 +68,38 @@ public class ScoreboardM {
     }
 
     private static String Colorize(String s) {
+
         s = ChatColor.translateAlternateColorCodes('&', s);
+        s=s.replace("{server_online}", String.valueOf(Bukkit.getOnlinePlayers().size()));
+        s=s.replace("{server_max_online}", String.valueOf(Bukkit.getMaxPlayers()));
+
+        List<World> world = Bukkit.getWorlds();
+        for (World value : world) {
+            String worldname = value.getName();
+            s = s.replace("{" + "<" + worldname + ">" + "_online_players}", String.valueOf(Bukkit.getWorld(worldname).getPlayers().size()));
+        }
+        try {
+            Object field = player.getClass().getMethod("getHandle").invoke(player);
+            s=s.replace("{player_ping}", String.valueOf(field.getClass().getDeclaredField("ping").get(field)));
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        s=s.replace("{player_world}", player.getWorld().getName());
+        s=s.replace("{player_exp}", String.valueOf(player.getExp()));
+        s=s.replace("{player_health}", String.valueOf(player.getHealth()));
+        s=s.replace("{player_max_health}", String.valueOf(player.getMaxHealth()));
+        s=s.replace("{player_food}", String.valueOf(player.getFoodLevel()));
+        s=s.replace("{player_kills}", String.valueOf(player.getStatistic(Statistic.PLAYER_KILLS)));
+        s=s.replace("{mob_kills}", String.valueOf(player.getStatistic(Statistic.MOB_KILLS)));
+        s=s.replace("{player_deaths}", String.valueOf(player.getStatistic(Statistic.DEATHS)));
+        s=s.replace("{player_gamemode}", player.getGameMode().name());
+
         if (player != null) {
             s = s.replace("{player-name}", player.getName());
         }
