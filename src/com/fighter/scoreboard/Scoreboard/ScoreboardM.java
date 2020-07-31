@@ -79,13 +79,13 @@ public class ScoreboardM {
         s = s.replace("{server_online}", String.valueOf(Bukkit.getOnlinePlayers().size()));
         s = s.replace("{server_max_online}", String.valueOf(Bukkit.getMaxPlayers()));
         if (Double.parseDouble(plugin.getTPS(0)) == 20) {
-            s = s.replace("{server_tps}", "&2" + plugin.getTPS(0)+"*");
+            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&2" + plugin.getTPS(0)+"*"));
         } else if (Double.parseDouble(plugin.getTPS(0)) > 17.0) {
-            s = s.replace("{server_tps}", "&a" + plugin.getTPS(0));
+            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&',"&a" + plugin.getTPS(0)));
         } else if (Double.parseDouble(plugin.getTPS(0)) <= 17.15 && Double.parseDouble(plugin.getTPS(0)) != 14.15) {
-            s = s.replace("{server_tps}", "&e" + plugin.getTPS(0));
+            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&',"&e" + plugin.getTPS(0)));
         } else if (Double.parseDouble(plugin.getTPS(0)) <= 14.0) {
-            s = s.replace("{server_tps}", "&c" + plugin.getTPS(0));
+            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&',"&c" + plugin.getTPS(0)));
         }
 
         Long maxRam = Runtime.getRuntime().maxMemory() / 1024L / 1024L;
