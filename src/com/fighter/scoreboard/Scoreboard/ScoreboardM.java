@@ -49,7 +49,8 @@ public class ScoreboardM {
                 Objective objective = board.registerNewObjective("basicboard", "dummy");
                 objective.setDisplaySlot(DisplaySlot.SIDEBAR);
 
-                objective.setDisplayName(Colorize(plugin.getConfig().getString("scoreboard-displayname")));
+                String title = plugin.getConfig().getString("scoreboard-displayname");
+                objective.setDisplayName(Colorize(title));
 
                 List<String> rows = plugin.getConfig().getStringList("scoreboard.text");
 
@@ -79,22 +80,21 @@ public class ScoreboardM {
         s = s.replace("{server_online}", String.valueOf(Bukkit.getOnlinePlayers().size()));
         s = s.replace("{server_max_online}", String.valueOf(Bukkit.getMaxPlayers()));
         if (Double.parseDouble(plugin.getTPS(0)) == 20) {
-            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&2" + plugin.getTPS(0)+"*"));
+            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&2" + plugin.getTPS(0) + "*"));
         } else if (Double.parseDouble(plugin.getTPS(0)) > 17.0) {
-            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&',"&a" + plugin.getTPS(0)));
+            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&a" + plugin.getTPS(0)));
         } else if (Double.parseDouble(plugin.getTPS(0)) <= 17.15 && Double.parseDouble(plugin.getTPS(0)) != 14.15) {
-            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&',"&e" + plugin.getTPS(0)));
+            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&e" + plugin.getTPS(0)));
         } else if (Double.parseDouble(plugin.getTPS(0)) <= 14.0) {
-            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&',"&c" + plugin.getTPS(0)));
+            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&c" + plugin.getTPS(0)));
         }
 
         Long maxRam = Runtime.getRuntime().maxMemory() / 1024L / 1024L;
         Long freeRam = Runtime.getRuntime().freeMemory() / 1024L / 1024L;
         Long usedRam = maxRam - freeRam / 1024L / 1024;
-        s=s.replace("{server_max_ram}", String.valueOf(maxRam));
-        s=s.replace("{server_free_ram}", String.valueOf(freeRam));
-        s=s.replace("{server_used_ram}", String.valueOf(usedRam));
-
+        s = s.replace("{server_max_ram}", String.valueOf(maxRam));
+        s = s.replace("{server_free_ram}", String.valueOf(freeRam));
+        s = s.replace("{server_used_ram}", String.valueOf(usedRam));
 
 
         List<World> world = Bukkit.getWorlds();
@@ -146,10 +146,15 @@ public class ScoreboardM {
             s = PlaceholderAPI.setPlaceholders((OfflinePlayer) player, s);
         }
         if (Bukkit.getServer().getPluginManager().isPluginEnabled("Vault") == true) {
-            s = s.replace("{player_balance}", String.valueOf(plugin.getEconomy().getBalance(player)));
-            s = s.replace("{player_prefix}", ChatColor.translateAlternateColorCodes('&',plugin.getChat().getPlayerPrefix(player)));
-            s = s.replace("{player_suffix}", ChatColor.translateAlternateColorCodes('&',plugin.getChat().getPlayerSuffix(player)));
-            s = s.replace("{player_group}", plugin.getChat().getPrimaryGroup(player));
+            if (plugin.setupEconomy()) {
+                s = s.replace("{player_balance}", String.valueOf(plugin.getEconomy().getBalance(player)));
+            }
+            if (plugin.setupChat()) {
+                s = s.replace("{player_prefix}", ChatColor.translateAlternateColorCodes('&', plugin.getChat().getPlayerPrefix(player)));
+                s = s.replace("{player_suffix}", ChatColor.translateAlternateColorCodes('&', plugin.getChat().getPlayerSuffix(player)));
+                s = s.replace("{player_group}", plugin.getChat().getPrimaryGroup(player));
+            }
+
         }
 
 
