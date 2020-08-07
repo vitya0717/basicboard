@@ -2,17 +2,16 @@ package com.fighter.scoreboard.Main;
 
 import com.fighter.scoreboard.Commands.BasicBoardCommands;
 import com.fighter.scoreboard.Listeners.PlayerJoinListener;
+import com.fighter.scoreboard.Scoreboard.Placeholders;
 import com.fighter.scoreboard.Scoreboard.ScoreboardM;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
-import net.minecraft.server.v1_16_R1.MinecraftServer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitScheduler;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -20,16 +19,15 @@ import java.text.DecimalFormat;
 
 public class Main extends JavaPlugin {
 
-    private BukkitScheduler scheduler = Bukkit.getScheduler();
     private static Economy econ = null;
     private static Permission perms = null;
     private static Chat chat = null;
     private final String name = Bukkit.getServer().getClass().getPackage().getName();
     private final String version = name.substring(name.lastIndexOf('.') + 1);
     private final DecimalFormat format = new DecimalFormat("##.##");
-
     private Object serverInstance;
     private Field tpsField;
+
 
     @Override
     public void onEnable() {
@@ -45,6 +43,8 @@ public class Main extends JavaPlugin {
 
         new ScoreboardM(this);
         new PlayerJoinListener(this);
+        new Placeholders(this);
+        
         getCommand("basicboard").setExecutor(new BasicBoardCommands(this));
         saveDefaultConfig();
 
@@ -58,17 +58,23 @@ public class Main extends JavaPlugin {
         Bukkit.getScheduler().cancelTask(ScoreboardM.scheduler);
     }
 
-    private boolean setupPermissions() {
+    public boolean setupPermissions() {
         RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        if(rsp == null) {
+            return false;
+        }
         perms = rsp.getProvider();
         return perms != null;
     }
-    private boolean setupChat() {
+    public boolean setupChat() {
         RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+        if(rsp == null) {
+            return false;
+        }
         chat = rsp.getProvider();
         return chat != null;
     }
-    private boolean setupEconomy() {
+    public boolean setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
             return false;
         }
