@@ -1,7 +1,7 @@
-#Scoreboard v0.1
+#BasicBoard v0.7
 #
 #Local varibales which working without PlaceholderAPI, I want to add more
-#{player-name}
+#{player_name}
 #{prefix} - (plugin prefix).
 #{<worldname>_online_players} Online players in specific world'
 #{player_ping}
@@ -20,6 +20,8 @@
 #{player_suffix}
 #
 #
+#FOR MORE PLACEHOLDERS https://github.com/Fighter20000/basicboard/wiki/Placeholders
+
 #Recommended enable it, for lot of cool placeholders!
 PlaceholderAPI:
   enable: true
@@ -27,7 +29,7 @@ PlaceholderAPI:
 BoardSettings:
   enable-board: true
   #time in second
-  scoreboard-update: 2
+  scoreboard-update: 1
   #You can use prefix at anywhere with {prefix} variable
   board-prefix: "&7[&aBasic&2Board&7]"
 
@@ -37,18 +39,30 @@ disable-worlds:
   - 'exampleworld'
 
 #Scoreboard header
-scoreboard-displayname: '&a&lBasic&2&lBoard'
+scoreboard-displayname: 
+  - '&aB'
+  - '&aBa'
+  - '&aBas'
+  - '&aBasi'
+  - '&aBasic'
+  - '&aBasic&2B'
+  - '&aBasic&2Bo'
+  - '&aBasic&2Boa'
+  - '&aBasic&2Boar'
+  - '&aBasic&2Board'
 
 #At this time you can't animate lines!
 scoreboard:
   text:
     - '&f&m+------------------------+'
     - ''
-    - '&2» &7Welcome, &a{player-name}'
+    - '&7Welcome, &a{player_name}'
     - '&r'
-    - '&2» &7Ping: &a{player_ping}'
-    - '&2» &7World: &a{player_world}'
-    - '&r&r'
-    - '&2» &7Online: &a{server_online}&8/&a{server_max_online}'
+    - '&7Ping: &a{player_ping}'
+    - '&7World: &a{player_world}'
+    - ''
+    - '&7Online: &a{server_online}&8/&a{server_max_online}'
     - '&f&f&m+------------------------+'
+
+
 
