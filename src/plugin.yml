@@ -1,9 +1,0 @@
-name: Scoreboard
-main: com.fighter.scoreboard.Main.Main
-version: v0.7
-author: Fighter20000
-softdepend: [Vault, PlaceholderAPI]
-commands:
-  basicboard:
-    default: false
-    description: Main command of BasicBoard.
