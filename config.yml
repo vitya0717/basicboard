@@ -1,0 +1,57 @@
+#BasicBoard v0.8-RECODED
+#
+#Local varibales which working without PlaceholderAPI, I want to add more
+#{player_name}
+#{prefix} - (plugin prefix).
+#{<worldname>_online_players} Online players in specific world'
+#{player_ping}
+#{player_world}
+#{player_exp}
+#{player_hp}
+#{player_food}
+#{player_kills}
+#{player_deaths}
+#{mob_kills}
+#
+#Vault placeholders: Needed vault for work!
+#{player_balance}
+#{player_group}
+#{player_prefix}
+#{player_suffix}
+#
+#
+#FOR MORE PLACEHOLDERS https://github.com/Fighter20000/basicboard/wiki/Placeholders
+
+#Recommended enable it, for lot of cool placeholders!
+PlaceholderAPI:
+  enable: true
+
+BoardSettings:
+  enable-board: true
+  #time in tick, 20 tick = 1 second.
+  scoreboard-update: 10
+  #You can use prefix at anywhere with {prefix} variable
+  board-prefix: "&7[&9&lBasic&b&lBoard&7]"
+
+#You can disable board in a specific world!
+disable-worlds:
+  - 'test'
+  - 'exampleworld'
+
+#Scoreboard header
+scoreboard-displayname: '&9&lBasic&b&lBoard'
+
+#At this time you can't animate lines!
+scoreboard:
+  text:
+    - "&7\xab&8&m------------------------&7\xbb"
+    - ''
+    - '&7Welcome, &b{player_name}'
+    - '&r'
+    - '&7Ping: &9{player_ping}'
+    - '&7World: &9{player_world}'
+    - '&7Server TPS: &9{server_tps}'
+    - ''
+    - '&7Online: &9{server_online}&8/&9{server_max_online}'
+    - "&7&7\xab&8&m------------------------&7\xbb"
+

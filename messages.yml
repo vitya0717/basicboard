@@ -1,0 +1,8 @@
+Messages:
+  command_usage: "&7[&9&lBasic&b&lBoard&7] &cIncorrect usage! /basicboard reload <config|messages|all>"
+  reload_config_config-yml: "&7[&9&lBasic&b&lBoard&7] &aSuccessfully reloaded the &7config.yml &afile."
+  reload_config_messages-yml: "&7[&9&lBasic&b&lBoard&7] &aSuccessfully reloaded the &7messages.yml &afile."
+  reload_config_all: "&7[&9&lBasic&b&lBoard&7] &aSuccessfully reloaded the all configuration files."
+  unknown_subcommand: "&7[&9&lBasic&b&lBoard&7] &cUnknown subcommand!"
+  unknown_command: "&7[&9&lBasic&b&lBoard&7] &cUnknown command!"
+  no_permission: "&7[&9&lBasic&b&lBoard&7] &cYou don't have enough permission for this!"

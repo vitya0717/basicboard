@@ -1,0 +1,10 @@
+name: BasicBoard
+main: BasicBoard.Main.Main
+version: 0.9-RECODED
+author: Fighter20000
+softdepend:
+  - Vault
+  - PlaceholderAPI
+commands:
+  basicboard:
+    description: Main command of basicboard
