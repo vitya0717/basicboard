@@ -47,7 +47,7 @@ public class BoardManager {
             if (line.equals("")) {
                 line = line.replace("", colors[i]);
             }
-            objective.getScore(pch.Colorize(player, line)).setScore(arrays.size() - i);
+            objective.getScore(pch.Colorize(player, line+colors[i])).setScore(arrays.size() - i);
 
             player.setScoreboard(scoreboard);
 
@@ -60,7 +60,7 @@ public class BoardManager {
             public void run() {
                 createBoardfor(player);
             }
-        }.runTaskTimer(plugin, 0, plugin.getConfig().getInt("BoardSettings.scoreboard-update"));
+        }.runTaskTimerAsynchronously(plugin, 0, plugin.getConfig().getInt("BoardSettings.scoreboard-update"));
     }
 
     public void unregisterThings() {
