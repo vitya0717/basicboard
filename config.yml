@@ -1,4 +1,4 @@
-#BasicBoard v0.8-RECODED
+#BasicBoard v1.0
 #
 #Local varibales which working without PlaceholderAPI, I want to add more
 #{player_name}
@@ -29,7 +29,7 @@ PlaceholderAPI:
 BoardSettings:
   enable-board: true
   #time in tick, 20 tick = 1 second.
-  scoreboard-update: 10
+  scoreboard-update: 30
   #You can use prefix at anywhere with {prefix} variable
   board-prefix: "&7[&9&lBasic&b&lBoard&7]"
 
@@ -53,5 +53,5 @@ scoreboard:
     - '&7Server TPS: &9{server_tps}'
     - ''
     - '&7Online: &9{server_online}&8/&9{server_max_online}'
-    - "&7&7\xab&8&m------------------------&7\xbb"
+    - "&7\xab&8&m------------------------&7\xbb"
 

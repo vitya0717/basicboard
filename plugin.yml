@@ -1,6 +1,6 @@
 name: BasicBoard
 main: BasicBoard.Main.Main
-version: 0.9-RECODED
+version: 1.0
 author: Fighter20000
 softdepend:
   - Vault
