@@ -30,7 +30,7 @@ public class Main extends JavaPlugin {
     private File file;
     private static Economy econ = null;
     private static Permission perms = null;
-    private static Chat chat = null;
+    public static Chat chat = null;
     private final String name = Bukkit.getServer().getClass().getPackage().getName();
     private final String version = name.substring(name.lastIndexOf('.') + 1);
     private final DecimalFormat format = new DecimalFormat("##.##");
