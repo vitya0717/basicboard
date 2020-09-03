@@ -21,13 +21,15 @@ public class Placeholders {
         s = ChatColor.translateAlternateColorCodes('&', s);
         s = s.replace("{server_online}", String.valueOf(Bukkit.getOnlinePlayers().size()));
         s = s.replace("{server_max_online}", String.valueOf(Bukkit.getMaxPlayers()));
-        if (Double.parseDouble(plugin.getTPS(0)) == 20) {
-            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&2" + plugin.getTPS(0) + "*"));
+        if (Double.parseDouble(plugin.getTPS(0)) >= 20) {
+            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&a" + 20 + "*"));
+        } else if (Double.parseDouble(plugin.getTPS(0)) == 20) {
+            s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&a" + plugin.getTPS(0) + "*"));
         } else if (Double.parseDouble(plugin.getTPS(0)) > 17.0) {
             s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&a" + plugin.getTPS(0)));
-        } else if (Double.parseDouble(plugin.getTPS(0)) <= 17.15 && Double.parseDouble(plugin.getTPS(0)) >= 14.15) {
+        } else if (Double.parseDouble(plugin.getTPS(0)) < 17.0 && Double.parseDouble(plugin.getTPS(0)) > 15.0) {
             s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&e" + plugin.getTPS(0)));
-        } else if (Double.parseDouble(plugin.getTPS(0)) <= 14.0) {
+        } else if (Double.parseDouble(plugin.getTPS(0)) < 15.0) {
             s = s.replace("{server_tps}", ChatColor.translateAlternateColorCodes('&', "&c" + plugin.getTPS(0)));
         }
 
@@ -48,13 +50,7 @@ public class Placeholders {
         try {
             Object field = player.getClass().getMethod("getHandle").invoke(player);
             s = s.replace("{player_ping}", String.valueOf(field.getClass().getDeclaredField("ping").get(field)));
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
+        } catch (IllegalAccessException | InvocationTargetException | NoSuchFieldException | NoSuchMethodException e) {
             e.printStackTrace();
         }
         s = s.replace("{player_world}", player.getWorld().getName());
@@ -92,11 +88,10 @@ public class Placeholders {
                 s = s.replace("{player_balance}", String.valueOf(Main.getEconomy().getBalance(player)));
             }
             if (plugin.setupChat()) {
-                s = s.replace("{player_prefix}",
-                        ChatColor.translateAlternateColorCodes('&', Main.getChat().getPlayerPrefix(player)));
+                s = s.replace("{player_prefix}", ChatColor.translateAlternateColorCodes('&', Main.chat.getPlayerPrefix(player)));
                 s = s.replace("{player_suffix}",
-                        ChatColor.translateAlternateColorCodes('&', Main.getChat().getPlayerSuffix(player)));
-                s = s.replace("{player_group}", Main.getChat().getPrimaryGroup(player));
+                        ChatColor.translateAlternateColorCodes('&', Main.chat.getPlayerSuffix(player)));
+                s = s.replace("{player_group}", Main.chat.getPrimaryGroup(player));
             }
 
         }
